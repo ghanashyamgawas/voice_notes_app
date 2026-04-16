@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceNotes MVP</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Login UI -->
+    <div id="loginCard" class="login-wrapper" style="display:none;">
+      <div class="login-left-panel">
+        <h1 class="login-brand-title">Voice Notes MVP</h1>
+      </div>
+      <div class="login-right-panel">
+        <h2 class="login-hello">hello</h2>
+
+        <form id="loginForm" class="login-form">
+          <button type="button" id="googleLoginBtn" class="google-login-btn">
+            <svg class="google-icon" viewBox="0 0 24 24" width="25" height="25">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Log in with google
+          </button>
+
+          <div class="login-divider">
+            <span class="login-divider-text">or</span>
+          </div>
+
+          <div class="login-input-group">
+            <input type="email" id="loginEmail" placeholder="Email" required class="login-input">
+          </div>
+
+          <div class="login-input-group">
+            <input type="password" id="loginPassword" placeholder="Password" required class="login-input">
+          </div>
+
+          <button id="loginBtn" type="submit" class="login-submit-btn">Log in</button>
+
+          <div id="loginError" class="login-error"></div>
+
+          <p class="login-signup-text">Don't have an account? <span class="login-signup-link">Sign up</span></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main App UI (hidden until login) -->
+    <div id="mainApp" style="display:none;">
+      <!-- New Header Design -->
+      <div class="app-header">
+        <div class="app-header-content">
+          <h1 class="app-title">Voice Notes MVP</h1>
+          <div class="profile-menu">
+            <span id="userNameDisplay" class="user-name-display"></span>
+            <button id="profileBtn" class="profile-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <button id="aboutOption">About</button>
+              <button id="helpOption">Help</button>
+              <button id="logoutOption">Sign out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Bar and Ask AI Button -->
+      <div class="search-bar-container">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input id="searchInput" type="search" placeholder="Search titles, transcripts, summaries…">
+        </div>
+        <button id="askAiBtn" class="ask-ai-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+          Ask AI
+        </button>
+      </div>
+
+
+      <div class="upload-card-new">
+        <form id="uploadForm">
+          <div class="upload-grid">
+            <!-- Recording Timer - Above Buttons -->
+            <div id="recordingTimer" class="recording-timer" style="display: none;">
+              0:00
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="upload-actions">
+              <button id="recordBtn" type="button" class="action-btn record-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="5"></circle>
+                </svg>
+                Record
+              </button>
+
+              <button id="stopBtn" type="button" class="action-btn stop-btn" disabled data-state="stop">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="7" y="7" width="10" height="10"></rect>
+                </svg>
+                Stop
+              </button>
+            </div>
+
+            <!-- File Upload - Below Buttons -->
+            <div class="upload-file-section">
+              <input type="file" id="audioFile" accept="audio/*">
+              <label for="audioFile" class="upload-file-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                Choose or drop audio file
+              </label>
+            </div>
+
+            <button id="uploadBtn" type="button" class="action-btn upload-btn" style="display: none;">
+              Upload Audio
+            </button>
+          </div>
+          <audio id="audioPreview" controls style="display:none"></audio>
+        </form>
+      </div>
+
+      <h2>Your Recordings</h2>
+      <div id="recordings">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🎧</div>
+          <div class="empty-text">No recordings yet — upload to get started.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

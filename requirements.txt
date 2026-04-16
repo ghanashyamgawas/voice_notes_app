@@ -1,0 +1,13 @@
+Flask==3.0.3
+flask-cors>=6.0.0
+python-dotenv==1.0.1
+openai>=1.54.0
+groq>=0.11.0
+google-auth>=2.0.0
+requests>=2.32.0
+
+# Database
+psycopg2-binary>=2.9.9
+SQLAlchemy>=2.0.23
+pgvector>=0.2.4
+alembic>=1.13.0

@@ -1,0 +1,39 @@
+[Database] Successfully initialized database connection
+[App] Initializing database...
+[Database] Successfully initialized database connection
+[App] Creating database tables if they don't exist...
+[Database] Successfully created all tables
+[App] ✓ Database is ready! All data will be saved to PostgreSQL.
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 170-710-780
+127.0.0.1 - - [01/Jan/2026 08:05:13] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:13] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:14] "GET /js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:14] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/api/recordings-api.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/auth/auth.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/ui/modals.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/ui/chat-modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/ui/recording-card.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/ui/collapsible-block.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/ui/ask-ai-modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:15] "GET /js/ui/toast.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/features/upload.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/features/recording.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/features/ai-actions.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/features/search.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/features/copy-actions.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/menus/create-menu.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/menus/share-menu.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:16] "GET /js/menus/profile-menu.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:17] "GET /js/utils/debounce.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:17] "GET /js/utils/text-helpers.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:17] "GET /js/menus/more-menu.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:17] "GET /js/features/draggable-card.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jan/2026 08:05:18] "GET /favicon.ico HTTP/1.1" 200 -
