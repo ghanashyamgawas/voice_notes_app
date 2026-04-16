@@ -1,44 +1,57 @@
-# Voice Notes MVP
+🔹 Voice Notes MVP – AI Powered Web Application
 
-A minimal voice-notes proof-of-concept that transcribes audio with Whisper and summarizes transcripts using OpenAI's chat models.
+A full-stack AI application that records audio, transcribes it using Whisper, and enables intelligent features like summarization, semantic search, and AI-powered Q&A.
 
-Purpose
-- Quickly transcribe local audio files and produce short summaries of conversations.
+🚀 Features
+🎤 Browser-based audio recording (MediaRecorder API)
+📝 Speech-to-text transcription using Whisper (whisper-1)
+🤖 AI-generated summaries, to-do lists, and email drafts
+🔍 Semantic search using embeddings + pgvector
+💬 Ask-AI: Query recordings using context-aware retrieval
+📂 Note management with PostgreSQL
+🏗️ Tech Stack
 
-Prerequisites
-- Python 3.8+
-- ffmpeg installed and available on PATH (required by Whisper)
-- An OpenAI API key
+Frontend:
 
+HTML, CSS, JavaScript (MediaRecorder API)
 
-Environment
-- Create a `.env` file in the project root with:
-  OPENAI_API_KEY=sk-...
+Backend:
 
-Usage (Python)
-- Example usage from the repository root:
-```python
-from utils.ai_utils import transcribe_audio, summarize_text
+Python, Flask (REST APIs)
 
-audio_path = "path/to/audio.wav"
-transcript = transcribe_audio(audio_path)
-print("Transcript:\n", transcript)
+AI:
 
-summary = summarize_text(transcript)
-print("Summary:\n", summary)
-```
+OpenAI Whisper (transcription)
+GPT models (summarization, Q&A)
+Embeddings (semantic search)
 
-Notes
-- The first Whisper model load will download model weights; use a larger model for better accuracy.
-- summarize_text returns a short error message on API failures so callers can handle/display it.
-- Ensure ffmpeg is installed and accessible; Whisper relies on ffmpeg for many formats.
+Database:
 
-Troubleshooting
-- If you see connection or authentication errors, verify OPENAI_API_KEY in `.env` and that it's loaded (python-dotenv).
-- If transcription or model load is slow, try a smaller model ("tiny") for faster runs.
+PostgreSQL + pgvector
+⚙️ How It Works (Flow)
+User records audio in browser
+Audio sent to Flask backend
+Whisper converts audio → text
+Text split into ~500-word chunks
+Embeddings generated and stored in PostgreSQL
+Features enabled:
+Semantic search
+Ask-AI (context retrieval)
+Summary, to-dos, email generation
+🛠️ Setup
+git clone <repo>
+cd voice-notes-mvp
+pip install -r requirements.txt
 
-Contributing
-- Open pull requests with small, focused changes. Include tests where applicable.
+Create .env:
 
-License
-- MIT 
+OPENAI_API_KEY=your_key_here
+
+Run:
+
+python app.py
+📌 Key Highlights
+Implemented vector search using pgvector
+Built context-aware AI system (not full transcript based)
+Designed end-to-end AI workflow pipeline
+Demonstrates full-stack + AI integration
